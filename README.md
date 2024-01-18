@@ -8,7 +8,7 @@ Available environment variables:
 * LIVEDEBUG_PORT: Internal exposed port to listen on (default: 3030)
 * LIVEDEBUG_URL: Host to listen on (default: http://localhost:3030)
 
-Example DDEV file:
+Example DDEV file for UI available at http://debug.YOURSITE.ddev.site
 
   ```yaml
   services:
