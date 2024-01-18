@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiveDebug</title>
+    <!-- Inclure la bibliothèque socket.io -->
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+
+    <style>
+        /* Ajoutez du style au bouton flottant */
+        .clear-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!-- Contenu de la page -->
+<!-- ... -->
+<button class="clear-button" onclick="clearPage()">Clear</button>
+
+<script>
+    const url = '##URL##';
+    const socket = io(url);
+
+    socket.on('update', (data) => {
+        document.body.innerHTML = data.html;
+    });
+
+    function clearPage() {
+        // Envoyez une requête au serveur pour effacer la page
+        fetch(url + '/clear', {method: 'POST'})
+            .then(response => response.text())
+            .then(message => console.log(message))
+            .catch(error => console.error('Erreur lors de la suppression de la page:', error));
+    }
+</script>
+</body>
+</html>
